@@ -18,8 +18,7 @@ namespace SQLDataAccess
         public Dashboard()
         {
             InitializeComponent();
-            peopleFoundListBox.DataSource = people;
-            peopleFoundListBox.DisplayMember = "FullInfo";
+            updateBinding();
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -27,12 +26,22 @@ namespace SQLDataAccess
 
         }
 
+        private void updateBinding()
+        {
+            peopleFoundListBox.DataSource = people;
+            peopleFoundListBox.DisplayMember = "FullInfo";
+        }
         private void searchButton_Click(object sender, EventArgs e)
         {
             DataAccess db = new DataAccess();
             people = db.getPeopleByLastName(lastNameText.Text);
-            peopleFoundListBox.DataSource = people;
-            peopleFoundListBox.DisplayMember = "FullInfo";
+            updateBinding();
+        }
+
+        private void insertRecordButton_Click(object sender, EventArgs e)
+        {
+            DataAccess db = new DataAccess();
+            db.insertPerson(firstNameTextBox.Text, lastNameTextBox.Text, emailAddressTextBox.Text, phoneTextBox.Text);
         }
     }
 }

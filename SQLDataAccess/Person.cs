@@ -8,9 +8,9 @@ namespace SQLDataAccess
 {
     public class Person
     {
-        int Id { get; set; }
-        string FirstName { set; get; }
-        string LastName { set; get; }
+        public int Id { get; set; }
+        public string FirstName { set; get; }
+        public string LastName { set; get; }
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
 

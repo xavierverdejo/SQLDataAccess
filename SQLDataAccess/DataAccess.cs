@@ -18,5 +18,15 @@ namespace SQLDataAccess
                 return output;
             }
         }
+
+        public void insertPerson(string firstName, string lastName, string emailAddress, string phone)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.cnnVal("Sample")))
+            {
+                List<Person> people = new List<Person>();
+                people.Add(new Person { FirstName = firstName, LastName = lastName, EmailAddress = emailAddress, PhoneNumber = phone });
+                connection.Execute("dbo.People_Insert @FirstName, @LastName, @EmailAddress, @PhoneNumber", people);
+            }
+        }
     }
 }
