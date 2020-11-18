@@ -14,7 +14,7 @@ namespace SQLDataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.cnnVal("Sample")))
             {
-                var output =  connection.Query<Person>($"SELECT * FROM People WHERE LastName = '{lastName}'").ToList();
+                var output =  connection.Query<Person>("dbo.People_GetByLastName @LastName", new { LastName = lastName}).ToList();
                 return output;
             }
         }
